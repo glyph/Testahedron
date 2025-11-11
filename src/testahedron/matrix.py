@@ -4,7 +4,7 @@ Fully abstract matrix representation.
 """
 
 from dataclasses import dataclass, field
-from typing import Generic, Iterator, Sequence, TypeVar
+from typing import Any, Generic, Iterator, Sequence, TypeVar, TypeVarTuple
 
 T = TypeVar("T")
 
@@ -34,7 +34,7 @@ class Cursor:
     A L{Cursor} is an iterable that can produce a set of L{Coordinate}s for a
     particular matrix in order.
     """
-    axes: Sequence[Axis[object]]
+    axes: Sequence[Axis[Any]]
     indexes: list[int] = field(init=False)
 
     def __post_init__(self) -> None:
@@ -56,14 +56,14 @@ class Cursor:
             else:
                 return
 
-
+Axes = TypeVarTuple("Axes")
 @dataclass
-class Matrix:
+class Matrix(Generic[*Axes]):
     """
     A L{Matrix} is an iterable which uses a collection of L{axes <Axis>} to
     produce a L{Cursor} to iterate its full cartesian product of L{Coordinate}s
     """
-    axes: Sequence[Axis[object]]
+    axes: tuple[*Axes]
 
     def __iter__(self) -> Iterator[Coordinate]:
         return iter(Cursor(self.axes))

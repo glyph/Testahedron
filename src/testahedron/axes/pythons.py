@@ -1,7 +1,14 @@
 from dataclasses import dataclass
+from enum import Enum, auto
 from typing import Iterable
 
 from ..matrix import Axis
+
+
+class Implementation(Enum):
+    cpython = auto()
+    pypy = auto()
+
 
 @dataclass
 class PythonVersion:
@@ -10,6 +17,7 @@ class PythonVersion:
     # specific micro-version.
     major: int
     minor: int
+    implementation: Implementation = Implementation.cpython
 
 
 def pythonVersions(
