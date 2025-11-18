@@ -1,5 +1,6 @@
 """
-Compute an axis for an optional dependency group.
+Compute an axis for optional groups of dependencies, including both “extras”
+and “dependency groups”.
 
 Thoughts:
 
