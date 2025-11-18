@@ -100,6 +100,21 @@ matrix = Matrix(
                 # installed in any configuration???
             ],
         ),
+        Axis(
+            "task",
+            # an axis defining the task to be performed
+            [
+                # we need to run type checks
+                "mypy",
+                # we need to run unit tests
+                "tests",
+                # "tests-without-coverage", # ???
+                # we need to run code quality
+                "lint",
+                # we need to report on code coverage
+                "coverage",
+            ]
+        ),
     ]
 )
 
@@ -303,4 +318,11 @@ produces misleading 'pass' messages.
 class ToxTomlGenerator:
     matrix: Matrix
 
-
+@dataclass
+class OneToxEnvironment:
+    name: str
+    "The user-facing name of the tox environment."
+    commands: list[str]
+    "Some shell commands to run (potentially with tox placeholders)"
+    deps: list[str]
+    "A list of Python dependencies to install in this environment"
