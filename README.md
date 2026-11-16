@@ -25,3 +25,7 @@ These exclusions, however, are often defined implicitly, by inclusion, in an ad-
 Testagon provides a way to declare the matrix abstractly, enumerate all possible coordinates within that fully expanded matrix, then illustrate which parts are excluded and why.
 
 The project's goal is to eventually be able to *create* config files for a variety of different tools which need to be derived from this information.
+
+## AI Policy
+
+Testahedron follows the [Twisted AI Policy](https://docs.twisted.org/en/latest/development/ai-policy.html). This means this project does not allow the inclusion of the outputs of generative AI tools.
